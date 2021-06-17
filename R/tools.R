@@ -26,11 +26,11 @@
 #     attributes(x) <- NULL
 #     x
 # }
-
+# write `attributes<-`(x, NULL) instead
 
 # ignore_attributes <- function(comparer=getOption("realtest_value_comparer", identical))
 # {
-#     function(x, y) comparer(unattr(x), unattr(y))
+#     function(x, y) comparer(`attributes<-`(x, NULL), `attributes<-`(y, NULL))
 # }
 
 
@@ -143,10 +143,10 @@ source2 <- function(file, local=FALSE)
 #'
 #' @examples
 #' \donttest{
-#' r <- test_dir("~/R/realtest/tests")
+#' r <- test_dir("~/R/realtest/inst/realtest")
 #' s <- summary(r)  # summary.realtest_results
 #' print(s)  # print.realtest_results_summary
-#' stopifnot(sum(s[["match"]]=="fail") == 0)  # halt if there are failed tests
+#' stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
 #' }
 #'
 #' @seealso Related functions:
@@ -242,10 +242,10 @@ test_dir <- function(
 #'
 #' @examples
 #' \donttest{
-#' r <- test_dir("~/R/realtest/tests")
+#' r <- test_dir("~/R/realtest/inst/realtest")
 #' s <- summary(r)  # summary.realtest_results
 #' print(s)  # print.realtest_results_summary
-#' stopifnot(sum(s[["match"]]=="fail") == 0)  # halt if there are failed tests
+#' stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
 #' }
 #'
 #' @seealso Related functions:
@@ -261,7 +261,7 @@ print.realtest_results_summary <- function(x, label_fail="fail", ...)
 
     cat("*** realtest: test summary:\n")
     if (!is.null(x[[".file"]]))
-        print(table(x[[".file"]], x[["match"]]))
+        print(table(basename(x[[".file"]]), x[["match"]]))
     else
         print(table(x[["match"]]))
     cat("\n")
@@ -305,7 +305,12 @@ summary.realtest_results <- function(object, label_pass="pass", label_fail="fail
 
         c(
             list(
-                call=deparse(r[["object"]][["expr"]][[1]]),
+                call=deparse(
+                    if (is.call(r[["object"]][["expr"]]))
+                        r[["object"]][["expr"]][[1]]
+                    else
+                        r[["object"]][["expr"]]
+                ),
                 match=match_name
             ),
             r[startsWith(names(r), ".")]
