@@ -1,7 +1,7 @@
 # kate: default-dictionary en_AU
 
 ## realtest package for R
-## Copyleft (C) 2021, Marek Gagolewski <https://www.gagolewski.com>
+## Copyleft (C) 2021-2023, Marek Gagolewski <https://www.gagolewski.com>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
 #' Example Test Result Postprocessors
 #'
 #' @description
-#' Test result postprocessors are used in \code{\link{E}}.
-#' \code{failstop} calls \code{\link[utils]{str}(r)}
+#' Generally, test result postprocessors are used by the \code{\link{E}}
+#' function. \code{failstop} calls \code{\link[utils]{str}(r)}
 #' and throws an error if an expectation is not met, i.e.,
 #' when \code{r[["matches"]]} is of length 0.
 #'

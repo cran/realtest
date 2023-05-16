@@ -29,11 +29,11 @@ unnamed prototypes}
 \code{realtest_results_summary} which is a data frame summarising
 the test results, featuring the following columns:
 \itemize{
-\item \code{call} -- name of the function tested,
+\item \code{call} -- the name of the function tested,
 \item \code{match} -- the name of the first matching prototype,
    \code{label_pass} if it is unnamed or \code{label_fail} if
    there is no match,
-\item \code{.file} (optional) -- name of the source file which
+\item \code{.file} (optional) -- the name of the source file which
    defined the expectation,
 \item \code{.line} (optional) -- line number,
 \item \code{.expr} (optional) -- source code of the whole tested expression.
@@ -44,12 +44,10 @@ An example (write your own which will better suit your needs)
 way to summarise the results returned by \code{test_dir}.
 }
 \examples{
-\donttest{
-r <- test_dir("~/R/realtest/inst/realtest")
-s <- summary(r)  # summary.realtest_results
-print(s)  # print.realtest_results_summary
-stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
-}
+# r <- test_dir("~/R/realtest/inst/realtest")  # some path
+# s <- summary(r)  # summary.realtest_results
+# print(s)  # print.realtest_results_summary
+# stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
 
 }
 \seealso{

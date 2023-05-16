@@ -1,7 +1,7 @@
 # kate: default-dictionary en_AU
 
 ## realtest package for R
-## Copyleft (C) 2021, Marek Gagolewski <https://www.gagolewski.com>
+## Copyleft (C) 2021-2023, Marek Gagolewski <https://www.gagolewski.com>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
 #'
 #' @details
 #' If \code{error}, \code{warning}, \code{message}, \code{stdout}, or
-#' \code{stderr} is \code{NULL}, then no side effect of a particular
-#' kind is included in the output.
+#' \code{stderr} are \code{NULL}, then no side effects of particular
+#' kinds are included in the output.
 #'
 #' The semantics is solely defined by the \code{sides_comparer}.
 #' \code{\link{E}} by default uses \code{\link{sides_similar}}
@@ -42,7 +42,8 @@
 #'    \code{\link[base]{stdout}}
 #'    and \code{\link[base]{stderr}}, respectively
 #' @param value_comparer,sides_comparer optional two-argument functions
-#'    which may be used to override the default comparers used by \code{\link{E}}
+#'    which may be used to override the default comparers
+#'    used by \code{\link{E}}
 #'
 #' @return
 #' A list of class \code{realtest_descriptor}
@@ -66,8 +67,8 @@
 #' @examples
 #' # the desired outcome is c(1L, 2L, 3L):
 #' P(1:3)
-#' # expecting c(1L, 2L, 3L), with a specific warning:
-#' P(1:3, warning="longer object length is not a multiple of shorter object length")
+#' # expecting c(1L, 2L, 3L), with a warning:
+#' P(1:3, warning=TRUE)
 #' # note, however, that it is the sides_comparer that defines the semantics
 #'
 #' @export

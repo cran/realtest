@@ -1,7 +1,7 @@
 # kate: default-dictionary en_AU
 
 ## realtest package for R
-## Copyleft (C) 2021, Marek Gagolewski <https://www.gagolewski.com>
+## Copyleft (C) 2021-2023, Marek Gagolewski <https://www.gagolewski.com>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@
 #' The function sets/updates the following environment variables while
 #' evaluating consecutive expressions:
 #' \itemize{
-#'    \item \code{__FILE__} -- path to current file,
+#'    \item \code{__FILE__} -- path to the current file,
 #'    \item \code{__LINE__} -- line number where the currently executed
 #'        expression begins,
 #'    \item \code{__EXPR__} -- source code defining the expression.
@@ -142,12 +142,10 @@ source2 <- function(file, local=FALSE)
 #' giving the location and the source code of the test instance.
 #'
 #' @examples
-#' \donttest{
-#' r <- test_dir("~/R/realtest/inst/realtest")
-#' s <- summary(r)  # summary.realtest_results
-#' print(s)  # print.realtest_results_summary
-#' stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
-#' }
+#' # r <- test_dir("~/R/realtest/inst/realtest")  # some path
+#' # s <- summary(r)  # summary.realtest_results
+#' # print(s)  # print.realtest_results_summary
+#' # stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
 #'
 #' @seealso Related functions:
 #' \code{\link{source2}}, \code{\link{summary.realtest_results}}
@@ -229,11 +227,11 @@ test_dir <- function(
 #' \code{realtest_results_summary} which is a data frame summarising
 #' the test results, featuring the following columns:
 #' \itemize{
-#' \item \code{call} -- name of the function tested,
+#' \item \code{call} -- the name of the function tested,
 #' \item \code{match} -- the name of the first matching prototype,
 #'    \code{label_pass} if it is unnamed or \code{label_fail} if
 #'    there is no match,
-#' \item \code{.file} (optional) -- name of the source file which
+#' \item \code{.file} (optional) -- the name of the source file which
 #'    defined the expectation,
 #' \item \code{.line} (optional) -- line number,
 #' \item \code{.expr} (optional) -- source code of the whole tested expression.
@@ -241,12 +239,10 @@ test_dir <- function(
 #'
 #'
 #' @examples
-#' \donttest{
-#' r <- test_dir("~/R/realtest/inst/realtest")
-#' s <- summary(r)  # summary.realtest_results
-#' print(s)  # print.realtest_results_summary
-#' stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
-#' }
+#' # r <- test_dir("~/R/realtest/inst/realtest")  # some path
+#' # s <- summary(r)  # summary.realtest_results
+#' # print(s)  # print.realtest_results_summary
+#' # stopifnot(!any(s[["match"]]=="fail"))  # halt if there are failed tests
 #'
 #' @seealso Related functions:
 #' \code{\link{test_dir}}
@@ -333,5 +329,3 @@ summary.realtest_results <- function(object, label_pass="pass", label_fail="fail
         class=c("realtest_results_summary", "realtest", "data.frame")
     )
 }
-
-
